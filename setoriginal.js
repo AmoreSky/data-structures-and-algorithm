@@ -2,6 +2,7 @@
 const container = new Set()
 
 container.add('lola')
+container.add('kola')
 container.add('tola')
 container.add('fola')
 container.add('kola')
