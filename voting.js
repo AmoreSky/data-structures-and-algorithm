@@ -51,11 +51,28 @@ class Evoting {
     }
 
     getResults() {
+        let winner = []
+        let highestVotes = 0
         for (let candidate in this.candidates) {
             console.log(
                 `The candidate ${this.candidates[candidate]["name"]} got a total of ${this.candidates[candidate]["numberOfVotes"]}`
             );
+            if(this.candidates[candidate]['numberOfVotes'] > highestVotes){
+                highestVotes = this.candidates[candidate]["numberOfVotes"]
+            }else if(this.candidates[candidate]['numberOfVotes'] == highestVotes && highestVotes > 0){
+
+            }
         }
+        for(let candidate in this.candidates){
+            if(this.candidates[candidate]['numberOfVotes'] == highestVotes && highestVotes){
+                winner.push(this.candidates[candidate]['name'])
+            }
+        }
+
+        console.log(winner.length > 1 ? `It is a tie between: ${winner.join(', ')}` : `The winner is ${winner[0]}`);
+        
+
+        // console.log(winner);    
     }
 }
 
@@ -75,16 +92,23 @@ eVote.registerVoters(3);
 eVote.registerVoters(4);
 eVote.registerVoters(5),
 eVote.registerVoters(3);
+eVote.registerVoters(6);
 
 // console.log(eVote.registeredVoters);
 
 
-eVote.castVote(1, 4);
-eVote.castVote(2, 3);
-eVote.castVote(3, 3);
-eVote.castVote(1, 2);
-eVote.castVote(6,3);
-eVote.castVote(2,10);
+eVote.castVote(1, 3); //successful
+eVote.castVote(2, 3); //successful
+eVote.castVote(3, 1); //successful
+eVote.castVote(1, 2); //unsuccessful
+eVote.castVote(9,3); //unsuccessful
+eVote.castVote(2,10); //unsuccessful
+eVote.castVote(4, 2);
+eVote.castVote(5, 2);
+eVote.castVote(6, 1);
+
 
 
 // console.log(eVote.registeredVoters);
+
+eVote.getResults()
